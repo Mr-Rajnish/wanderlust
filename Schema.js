@@ -8,8 +8,8 @@ module.exports.listingSchema=joi.object({
         country:joi.string().required(),
         price: joi.number().required().min(0),
         image:joi.string().allow("",null),
-        category: joi.string().valid('Trending', 'Rooms','cities', 'Mountain', 'Castles','Pools','Camping','Farms', 'Artic Region','Domes','Boating',).required(),  // Added category field with validation
-  
+        category: joi.string().valid('Trending', 'Rooms','Cities', 'Mountain', 'Castles','Pools','Camping','Farms', 'Artic Region','Domes','Boating',).required(),  // Added category field with validation
+       
     
 });
 
