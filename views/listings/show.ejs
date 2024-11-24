@@ -1,0 +1,185 @@
+<% layout("/layouts/boilerplate.ejs")%>
+<div class="row mt-3">
+    <div class="col-8 offset-3">
+
+    <h2><%=listing.title%></h2>
+    <br>
+</div>
+
+    <div class="card col-6 offset-3 show-card listing-card">
+        <div class="images">
+            <img id="image" src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing_image">
+        </div>
+        
+        
+        <div class="card-body">
+            <p><h4><b>Published by: <i><%=listing.owner.username%></i></b></h4></p>
+            <p class="card-text card-description"><b><%=listing.description%></b></p>
+            <p class="card-text card-textcard-price">
+                <b>₹<%= listing.price ? listing.price.toLocaleString("en-IN") : 'N/A' %>/night</b>
+              </p>
+            <p class="card-text card-country"><b><%=listing.country%></b></p>
+            <p class="card-text card-location"><b><%=listing.location%></b></p>
+            <p class="card-text card-category"><b><i>Category : </i></b><b><%=listing.category%></b></p>
+          </div>
+    </div>
+
+    <br/>
+
+    <% if(curruser && curruser._id.equals(listing.owner._id)){ %>
+  
+    <div class="btns">
+        <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark offset-3 edit-btn">Edit</a>
+        <form action="/listings/<%=listing._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-dark del-btn offset-5">Delete</button>
+       </form>
+    </div>
+
+    <% } %>
+
+
+  
+    
+    <div class="col-8 offset-3 mb-3">
+       
+        <% if(curruser) { %>
+            <hr>
+        <h4>Leave a Review</h4>
+        <form action="/listings/<%=listing.id%>/reviews" method="POST" novalidate class="needs-validation">
+          
+
+             <div class="mb-3 mt-3">
+                <label for="rating" class="form-label">Rating</label>
+             <fieldset class="starability-slot">
+                
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
+            </div>
+
+             <div class="mb-3 mt-3">
+                <Label for="comments" class="form-label">Comments</Label>
+                <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+                <div class="invalid-feedback">
+                    Please add some comments for review
+                </div>
+            </div>
+            <button class="btn btn-outline-dark">Submit</button>
+        </form>
+        <hr>
+        <%}%>
+
+        <% if(listing.reviews.length>0){ %>
+        <div class="row">
+            <p><b>All Reviews</b></p>
+        <% for(review of listing.reviews){%>
+            <div class="card col-5 ms-3 mb-3 ">
+                <div class="card-body">
+                    <h5 class="card-title">@<%= review.author.username%></h5>
+                    <p class="starability-result" data-rating=<%= review.rating%>></p>
+                    <p class="card-text"><%= review.comment%></p>
+                    
+                    <br>
+                </div>
+                <form class="mb-3" action="/listings/<%= listing._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-dark">Delete</button>
+                </form>
+            </div>
+            <%}%>
+        </div>   
+        <%}%>
+    </div>
+ 
+
+    <div class="col-8 offset-3 mb-3 maps">
+          <h3>Where You'll be</h3>
+          <div id="map">
+            
+          </div>
+    </div>
+</div>
+
+<script>
+    // Pass the 'listing' object from EJS into JavaScript
+    const listing = <%- JSON.stringify(listing) %>; // Inject the listing object
+
+    // Initialize the map with the location's coordinates
+    var map = L.map('map').setView([26.792975, 80.911919], 9); // Coordinates: [latitude, longitude]
+
+    // Add Thunderforest tile layer to the map
+    L.tileLayer('https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=6199b9500e854b638194692058d5767a', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                     'Tiles courtesy of <a href="https://www.thunderforest.com/">Thunderforest</a>',
+        maxZoom: 19 // Maximum zoom level for the tile layer
+    }).addTo(map);
+
+    // Create a red marker icon (you can customize the color as needed)
+    const customIcon = L.icon({
+        iconUrl: 'https://img.favpng.com/3/23/13/map-icon-png-vector-format-png-favpng-SwT3fkihcFphPUsrfz8zy4RnC.jpg',  // URL to your custom marker image
+        iconSize: [52, 52],  // Adjust the size of the icon
+        iconAnchor: [16, 32],  // Anchor the icon at the bottom center
+        popupAnchor: [0, -32]  // Offset the popup above the marker
+    });
+
+    // Create a marker at the location's coordinates
+    const coordinates = listing.geometry.coordinates; // Coordinates: [longitude, latitude]
+    const marker = L.marker([coordinates[0], coordinates[1]], { icon: customIcon }).addTo(map); // [Lat, Lng]
+
+    // Add a popup to the marker with the address (not coordinates)
+    marker.bindPopup("<b>Location:</b><br>" + listing.location).openPopup();
+</script>
+
+<style>
+
+
+
+ #image {
+  height: auto;
+  width: 100% !important;
+  object-fit: contain !important; 
+  transition: transform 0.3s ease; /* Smooth transition */
+
+}
+
+.images{
+    height: auto;
+  width: 50vw;
+}
+
+#image:hover {
+  transform: scale(1.3); /* Increase the size by 20% */
+}
+
+/* Basic container styling */
+#map {
+  width: 100%;  /* Takes up 100% of the container's width */
+  height: 400px;  /* Set an initial height that works well on most screens */
+  background-color: #f0f0f0; /* Optional: to show a background color in case the map does not load */
+  border-radius: 8px;  /* Optional: for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Optional: add a shadow for a nicer look */
+}
+
+/* Make the map responsive on smaller screens */
+@media (max-width: 768px) {
+  #map {
+    height: 300px;  /* Reduce the height on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  #map {
+    height: 250px;  /* Further reduce the height on very small screens */
+  }
+}
+
+
+</style>

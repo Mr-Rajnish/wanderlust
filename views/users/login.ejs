@@ -1,0 +1,102 @@
+
+
+<% layout("/layouts/boilerplate.ejs")%>
+
+<!-- Hero Section with Background Image -->
+<div class="hero-section position-relative m-4" >
+    <div class="overlay">
+        <div class="container d-flex align-items-center justify-content-center" style="height: 70vh; ">
+            
+        </div>
+    </div>
+</div>
+<div class="row position-absolute  custom3 " style="top:5rem;  width: 100%;">
+    <h1 class="col-12 form-heading text-center text-white mb-4">Airbnb Login</h1>
+    <div class="col-12 col-md-6 offset-md-3 ">
+        <form action="/login" method="POST" class="needs-validation" novalidate>
+            <div class="mb-4">
+                <label for="username" class="form-label text-white">Username</label>
+                <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label text-white">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+        </form>
+    </div>
+</div>
+<!-- Add custom styles here -->
+<style>
+    /* Hero section styling */
+    .hero-section {
+        position: relative;
+        background-image: url('https://images.pexels.com/photos/730218/pexels-photo-730218.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 70vh;
+        filter: blur(3px);
+        
+    }
+
+    .hero-section .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        
+    }
+
+    /* Form styling */
+    .form-control {
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .col-md-6 {
+            width: 100% !important;
+        }
+        .custom3{
+width: 80% !important;
+top: 6.5rem !important;
+left: 3rem !important;
+        }
+        .hero-section{
+        width: 100%;
+        margin: 0 !important;
+        }
+        .form-heading{
+            color: black !important
+            ;
+        }
+    }
+</style>

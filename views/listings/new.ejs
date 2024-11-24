@@ -1,0 +1,319 @@
+<!-- <% layout("/layouts/boilerplate.ejs")%>
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+    <h2>Create a new Listings:</h2>
+    <br>
+    <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data" >
+     <div class="mb-3">
+        <label for="title" class="form-label">Title </label>
+        <input type="text" name="title" placeholder="enter a  catchy title" class="form-control" required>
+        <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please choose a suitable title.
+          </div>
+     </div>
+        
+    <div class="mb-3">
+        <label for="description" class="form-label">Description </label>
+        <textarea type="text" name="description" id="description" placeholder="enter description" class="form-control" required></textarea>
+        <div class="invalid-feedback">
+            Please choose a description
+          </div>
+    </div>
+
+       <div class="mb-3">
+        <label for="image" class="form-label">Upload Image  </label>
+        <input type="file"  name="image"  class="form-control" required >
+        
+      </div>
+
+     <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price </label>
+            <input  name="price" placeholder="1200" class="form-control" required>
+            <div class="invalid-feedback">
+                Please enter a valid price.
+              </div>
+           </div>
+    
+           <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country </label>
+            <input type="text" name="country" placeholder="India" class="form-control" required>
+            <div class="invalid-feedback">
+                Country should be valid
+              </div>
+          </div>
+     </div>
+     
+        <div class="mb-3">
+            <label for="location" class="form-label">Location </label>
+            <input type="text" name="location" placeholder="Jaipur , Rajasthan" class="form-control" required>
+            <div class="invalid-feedback">
+                location should be valid 
+              </div>
+        </div>
+
+       <button class="btn add-btn btn-dark mt-3">Add</button>
+       <br><br>
+    </form>
+    </div>
+    </div> -->
+
+ <!-- <% layout("/layouts/boilerplate.ejs") %>
+
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Create a New Listing</h2>
+        <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="title" placeholder="Enter a catchy title" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please choose a suitable title.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" id="description" placeholder="Enter description" class="form-control" required></textarea>
+                <div class="invalid-feedback">
+                    Please choose a description.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image</label>
+                <input type="file" name="image" class="form-control" required>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="price" placeholder="1200" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid price.
+                    </div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" name="country" placeholder="India" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Country should be valid.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" name="location" placeholder="Jaipur, Rajasthan" class="form-control" required>
+                <div class="invalid-feedback">
+                    Location should be valid.
+                </div>
+            </div>
+
+            <button class="btn add-btn btn-dark mt-3">Add</button>
+        </form>
+    </div>
+</section> -->
+
+<% layout("/layouts/boilerplate.ejs") %>
+
+<!-- Hero Section with blurred background -->
+<section class="hero">
+    <div class="hero-content">
+        <h2>Create a New Listing</h2>
+        <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+            <!-- Title Field -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="title" placeholder="Enter a catchy title" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please choose a suitable title.
+                </div>
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" id="description" placeholder="Enter description" class="form-control" required></textarea>
+                <div class="invalid-feedback">
+                    Please choose a description.
+                </div>
+            </div>
+
+            <!-- Image Upload Field -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image</label>
+                <input type="file" name="image" class="form-control" required>
+            </div>
+
+            <!-- Price and Country Fields -->
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="price" placeholder="1200" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid price.
+                    </div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" name="country" placeholder="India" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Country should be valid.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Field -->
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" name="location" placeholder="Jaipur, Rajasthan" class="form-control" required>
+                <div class="invalid-feedback">
+                    Location should be valid.
+                </div>
+            </div>
+
+            <!-- Category Dropdown Field -->
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select name="category" class="form-control" required>
+                    <option value="">Select a Category</option>
+                    <option value="Trending">Trending</option>
+                    <option value="Rooms">Rooms</option>
+                    <option value="Cities">Cities</option>
+                    <option value="Mountain">Mountain</option>
+                    <option value="Castles">Castles</option>
+                    <option value="Pools">Pools</option>
+                    <option value="Camping">Camping</option>
+                    <option value="Farms">Farms</option>
+                    <option value="Arctic Region">Arctic Region</option>
+                    <option value="Domes">Domes</option>
+                    <option value="Boating">Boating</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid category.
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn add-btn btn-dark mt-3">Add</button>
+        </form>
+    </div>
+</section>
+
+
+<style>
+  /* Ensure all elements are reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full-page setup */
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 115vh; /* Take full viewport height */
+    background-image: url('https://images.pexels.com/photos/1862183/pexels-photo-1862183.jpeg?auto=compress&cs=tinysrgb&w=600'); /* Background image URL */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Apply the blur effect on the background */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit; /* Inherit the background image from the parent */
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px); /* Apply blur effect */
+    z-index: -1; /* Ensure it stays behind the content */
+}
+
+/* Hero Content */
+.hero .hero-content {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: dark overlay for better text visibility */
+    padding: 40px;
+    width: 100%;
+    max-width: 800px; /* Limit the form width */
+    color: white;
+    border-radius: 10px;
+    height: 95%;
+}
+
+/* Form Styling */
+.hero .form-control {
+    background-color: rgba(255, 255, 255, 0.8); /* Slight white background for form elements */
+    border: 1px solid #ccc;
+}
+
+/* Heading Style */
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Button Style */
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #555;
+}
+
+/* Input fields */
+input, textarea {
+    margin-bottom: 15px;
+}
+
+/* Small screen adjustments */
+@media (max-width: 768px) {
+    .hero .hero-content {
+        padding: 20px;
+    }
+    .hero h2 {
+        font-size: 2em;
+    }
+}
+
+</style>
+
+
+
